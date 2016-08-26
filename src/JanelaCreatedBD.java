@@ -19,7 +19,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 	private JPanel panelRadio,panelv15,panelv7;
 	private ButtonGroup grupBDs;
 	private JButton botaoBanco,botaoFTP;
-	private String Loja;
+	private String Loja,UF;
 	
 	
 	public JanelaCreatedBD(int x,int y){
@@ -235,8 +235,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		
 		if(RadioButtonv7.isSelected()){
 			Loja = JOptionPane.showInputDialog("Digite a loja: ");
-			
-
+	
 			while(Integer.parseInt(Loja) < 0 || Integer.parseInt(Loja) > 1000){
 				Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 			}
@@ -251,12 +250,18 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 					Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 				}
 			}			
+			
+			this.UF = JOptionPane.showInputDialog("Digite o estado da loja: ");
+			while(UF.length() != 2){
+				JOptionPane.showMessageDialog(null, "Estado invalido");
+				Loja = JOptionPane.showInputDialog("Digite o estado da loja "+this.UF" novamente: ");
+			}
+			
 			for(int i = 0;i<listButtonsv7.size();i++)
 				listButtonsv7.get(i).setEnabled(true);
 			
-
 		} else if(RadioButtonv7.isSelected() == false){
-			Desabilitar();
+			Desabliitar();
 		}
 		
 		if(RadioButtonv15.isSelected()){
@@ -277,6 +282,14 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 					Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 				}
 			}
+			
+			this.UF = JOptionPane.showInputDialog("Digite o estado da loja: ");
+			
+			while(UF.length() != 2){
+				JOptionPane.showMessageDialog(null, "Estado invalido");
+				Loja = JOptionPane.showInputDialog("Digite o estado da loja "+this.UF" novamente: ");
+			}
+			
 			
 			for(int i = 0;i<listButtonsv15.size();i++)
 				listButtonsv15.get(i).setEnabled(true);
