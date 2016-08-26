@@ -18,8 +18,8 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 	private	JLabel lblfundo = new JLabel(imgfundo);
 	private JLabel lblhora 	= new JLabel();
 	private JLabel lblIntro = new JLabel("<html>Sr. operador(a)  "+ System.getProperty("user.name") 
-	+" , essa ferramenta ir· te proporcionar maior praticidade para executar "
-	+"suas aplicaÁıes. Bom trabalho!</html>");
+	+" , essa ferramenta ir√° te proporcionar maior praticidade para executar "
+	+"suas aplica√ß√µes. Bom trabalho!</html>");
 	
 	public Janela(int x, int y)
 	{
@@ -37,7 +37,7 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 		this.setIconImage(iconeTitulo);
 		addWindowListener(new WindowAdapter() {
 				public void windowClosing(WindowEvent evt) {
-					int test = JOptionPane.showConfirmDialog(null, "Deseja realmente fechar a aplicaÁ„o?","Confirm",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+					int test = JOptionPane.showConfirmDialog(null, "Deseja realmente fechar a aplica√ß√£o?","Confirm",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 						if(test == JOptionPane.YES_OPTION){
 							setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 							new Comando("rundll32 SHELL32.DLL,ShellExec_RunDLL "+"cmd /c C:\\ToolsWork\\script\\delPart.exe");
@@ -69,8 +69,8 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 		listPanel.get(1).setBounds(0, 63, 805, 60);
 		
 		listButtons.add(new JButton("Retaguarda"));
-			listButtons.add(new JButton("Teste de Conex„o"));
-				listButtons.add(new JButton("Controle de Usu·rios"));
+			listButtons.add(new JButton("Teste de Conex√£o"));
+				listButtons.add(new JButton("Controle de Usu√°rios"));
 					listButtons.add(new JButton("Senhas Lojas"));
 						listButtons.add(new JButton("Gerar de BD"));
 							listButtons.add(new JButton("Controlar Atendimento"));
@@ -85,7 +85,7 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 	
 	public void PainelComunic(){
 		listPanel.add(new JPanel(new MigLayout()));
-				listPanel.get(2).setBorder(BorderFactory.createTitledBorder("Comunica√ß√£o Interna"));
+				listPanel.get(2).setBorder(BorderFactory.createTitledBorder("Comunica√É¬ß√É¬£o Interna"));
 					listPanel.get(2).setBounds(0,400, 255, 60);
 		
 		listButtons.add(new JButton("Windows Mail"));
@@ -119,7 +119,7 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 		Planilhas = new JComboBox();
 			Planilhas.addItem("Planilha lojas");
 				Planilhas.addItem("Ramais Matriz");
-					Planilhas.addItem("RelaÁ„o de Ofertas");
+					Planilhas.addItem("Rela√ß√£o de Ofertas");
 				
 		
 		listPanel.add(new JPanel(new MigLayout()));
@@ -158,15 +158,15 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 	}
 	
 	public void ToolTipText(){
-		listButtons.get(0).setToolTipText("<html>Clique aqui para comeÁar sua di·ria de trabalho!"
+		listButtons.get(0).setToolTipText("<html>Clique aqui para come√ßar sua di√°ria de trabalho!"
 										  +"<br>Seja bem vindo. - Atalho F1</html>");	
 		listButtons.get(1).setToolTipText("Clique aqui para encerrar - Atalho F2");	
 		listButtons.get(2).setToolTipText("Abrir Cosmos Retaguarda - Atalho F3");;	
-		listButtons.get(3).setToolTipText("Abrir teste de conex√£o - Atalho F4");;
+		listButtons.get(3).setToolTipText("Abrir teste de conex√É¬£o - Atalho F4");;
 		listButtons.get(4).setToolTipText("Abrir o AD - Atalho F5");;
 		listButtons.get(5).setToolTipText("Abrir Senhas Lojas - Atalho F6");	
 		listButtons.get(6).setToolTipText("Gerar bancos v7 & v15 - Atalho F7");
-		listButtons.get(7).setToolTipText("Abrir aplicaÁıes para controlar todas suas ligaÁıes - Atalho F8)");
+		listButtons.get(7).setToolTipText("Abrir aplica√ß√µes para controlar todas suas liga√ß√µes - Atalho F8)");
 		listButtons.get(8).setToolTipText("Abrir Windows Email - Atalho F9");
 		listButtons.get(9).setToolTipText("Abrir Spark~Messenger interno - Atalho F10");
 		listButtons.get(10).setToolTipText("Escolha o site ao lado e clique aqui - Atalho F11");
@@ -214,8 +214,8 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 
 	
 	public void AcessoLinks(){
-		JOptionPane.showMessageDialog(null, "<html>O browser aberto ser· o padr„o da sua m·quina pra alterar<br>"
-										+ "v· em Painel Controle -> Propriedades de Internet -> Definir Programas -> Definir Programas padr„o da internet</html>");
+		JOptionPane.showMessageDialog(null, "<html>O browser aberto ser√° o padr√£o da sua m√°quina pra alterar<br>"
+										+ "v√° em Painel Controle -> Propriedades de Internet -> Definir Programas -> Definir Programas padr√£o da internet</html>");
 		if(links.getSelectedIndex() == 0)
 			new Comando("cmd /c C:\\ToolsWork\\Links\\urlIntranet.url");
 			else if (links.getSelectedIndex() == 1)
@@ -232,17 +232,17 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 	
 	public void AcessoPlanilhas(){
 		if(Planilhas.getSelectedIndex() == 0)
-			new Comando("cmd /c \"C:\\Program Files\\LibreOffice 4\\program\\scalc.exe\" + K:\\Tecnologia\\TAB076_Planilha_Pague_Menos.xls");
+			new Comando("cmd /c \"C:\\Program Files\\LibreOffice 4\\program\\scalc.exe\" K:\\Tecnologia\\TAB076_Planilha_Pague_Menos.xls");
 			else if (Planilhas.getSelectedIndex() == 1)
-				new Comando("cmd /c \"C:\\Program Files\\LibreOffice 4\\program\\scalc.exe\" + \"K:\\CentralDeServicos\\Ramais Matriz.ods\"");
+				new Comando("cmd /c \"C:\\Program Files\\LibreOffice 4\\program\\scalc.exe\" \"K:\\CentralDeServicos\\Ramais Matriz.ods\"");
 				else if (Planilhas.getSelectedIndex() == 2)
-					new Comando("cmd /c \"C:\\Program Files\\LibreOffice 4\\program\\scalc.exe\" + \"K:\\CentralDeServicos\\RelaÁ„o de Ofertas.xls\"");
+					new Comando("cmd /c \"C:\\Program Files\\LibreOffice 4\\program\\scalc.exe\" \"K:\\CentralDeServicos\\Rela√ß√£o de Ofertas.xls\"");
 	}
 	
 	public void AcessoControleAtendimento()
 	{
-		JOptionPane.showMessageDialog(null, "<html> O uso È apenas para controlar suas ligaÁıes internas<br>"
-											 + "maiores d˙vidas procure o Administrador do sistema</html>");
+		JOptionPane.showMessageDialog(null, "<html> O uso √© apenas para controlar suas liga√ß√µes internas<br>"
+											 + "maiores d√∫vidas procure o Administrador do sistema</html>");
 		
 		new Comando("rundll32 SHELL32.DLL,ShellExec_RunDLL " + "cmd /c C:\\ToolsWork\\script\\ControlCall.exe");
 	}
