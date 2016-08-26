@@ -180,7 +180,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		df = new SimpleDateFormat("ddMM");
 		
 		String Arquivo_Carga = "RF"+Loja+df.format(hoje)+".zip";
-		System.out.println(Arquivo_Carga);
+	
 		new Comando("cmd /c move F:\\Exporta\\"+Arquivo_Carga+" C:\\Cosmos\\Importa");
 		// recorta todos os bancos gerados para a pasta Backup - OK
 		new Comando("cmd /c move C:\\Cosmos\\Bck\\*.zip C:\\ToolsWork\\Backup_Bancos\\");
