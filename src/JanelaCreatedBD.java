@@ -23,7 +23,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 	
 	
 	public JanelaCreatedBD(int x,int y){
-		super("Geração de Banco de Dados");
+		super("GeraÃ§Ã£o de Banco de Dados");
 		setContentPane(new JPanel());
 		setResizable(false);
 		setVisible(true);
@@ -58,7 +58,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		grupBDs.add(RadioButtonv15);
 		grupBDs.add(RadioButtonv7);
 		panelRadio = new JPanel(new MigLayout());
-		panelRadio.setBorder(BorderFactory.createTitledBorder("Escolha a opção"));
+		panelRadio.setBorder(BorderFactory.createTitledBorder("Escolha a opÃ§Ã£o"));
 		panelRadio.setBounds(0, 0, 500, 60);
 		panelRadio.add(RadioButtonv15);
 		panelRadio.add(RadioButtonv7);
@@ -83,8 +83,8 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		panelv15.setBounds(0, 77, 700, 80);
 		listButtonsv15.add(new JButton("Mover Carga"));
 		listButtonsv15.add(new JButton("Config Ini"));
-		listButtonsv15.add(new JButton("Manutenção"));
-		listButtonsv15.add(new JButton("SegurançaFL"));
+		listButtonsv15.add(new JButton("ManutenÃ§Ã£o"));
+		listButtonsv15.add(new JButton("SeguranÃ§aFL"));
 		listButtonsv15.add(new JButton("Repara"));
 		listButtonsv15.add(new JButton("Compactar Arquivo"));
 
@@ -104,7 +104,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		listButtonsv7.add(new JButton("Mover Carga"));
 		listButtonsv7.add(new JButton("Mover MDB"));
 		listButtonsv7.add(new JButton("Config Ini"));
-		listButtonsv7.add(new JButton("Segurança FL"));
+		listButtonsv7.add(new JButton("SeguranÃ§a FL"));
 		listButtonsv7.add(new JButton("Repara"));
 		listButtonsv7.add(new JButton("Compactar Arquivo"));
 		
@@ -182,22 +182,27 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		String Arquivo_Carga = "RF"+Loja+df.format(hoje)+".zip";
 		System.out.println(Arquivo_Carga);
 		new Comando("cmd /c move F:\\Exporta\\"+Arquivo_Carga+" C:\\Cosmos\\Importa");
-		new Comando("cmd /c copy C:\\Cosmos\\Importa\\"+Arquivo_Carga+" C:\\ToolsWork\\Cargas_Banco");
+		// recorta todos os bancos gerados para a pasta Backup - OK
 		new Comando("cmd /c move C:\\Cosmos\\Bck\\*.zip C:\\ToolsWork\\Backup_Bancos\\");
+		// exclui todas os bancos da pasta "Bck" - OK
 		new Comando("cmd /c del C:\\Cosmos\\Bck\\*.bak");
+		// copia as cargas do importa para uma pasta de armazenamento de backup das cargas - OK
+		new Comando("cmd /c copy C:\\Cosmos\\Importa\\"+Arquivo_Carga+" C:\\ToolsWork\\Cargas_Banco");
 	}
 	
 	public void CompactarArquivov15() {
 	
 		String arquivoCompactado = "Banco"+Loja+"_versao15.zip";
-		// criando zip
-		new Comando("cmd /c C:\\progra~1\\WinRAR\\Rar.exe a -ep C:\\Cosmos\\Bck\\"+arquivoCompactado+ "C:\\Cosmos\\Bck\\*.bak");
+		// criando zip - vai zipar todos os arquivos .bak - por esse motivo nÃ£o posso deixar mais de
+		// 1 arquivo com essa mesma extensÃ£o
+		new Comando("cmd /c C:\\progra~1\\WinRAR\\Rar.exe a -ep C:\\Cosmos\\Bck\\"+arquivoCompactado+ " C:\\Cosmos\\Bck\\*.bak");
+		JOptionPane.showMessageDialog(null, "Aguarde uns instantes.. Compactando arquivo.");
 		// movendo pro backup
 		new Comando("cmd /c move C:\\Cosmos\\Bck\\*.zip C:\\ToolsWork\\Backup_Bancos");
 		// abrindo pasta pro operador olhar
 		new Comando("cmd /c explorer C:\\Cosmos\\Bck\\");
 		
-		JOptionPane.showMessageDialog(null, "Você concluiu a geração do banco versão 15, cole o arquivo"+arquivoCompactado+" no FTP");
+		JOptionPane.showMessageDialog(null, "VocÃª concluiu a geraÃ§Ã£o do banco versÃ£o 15, cole o arquivo "+arquivoCompactado+" no FTP");
 	}
 	
 	public void MoverArquivov7() {
@@ -205,9 +210,9 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		SimpleDateFormat df;
 		df = new SimpleDateFormat("ddMM");
 		
-		
 		String Arquivo_Carga = "RF"+Loja+df.format(hoje)+".zip";
 		System.out.println(Arquivo_Carga);
+		
 		new Comando("cmd /c move F:\\Exporta\\"+Arquivo_Carga+".zip "+" C:\\Cosmos\\Importa");
 		new Comando("cmd /c copy C:\\Cosmos\\Importa\\"+Arquivo_Carga+" C:\\ToolsWork\\Cargas_Banco");
 		new Comando("cmd /c move C:\\Cosmos\\Dat\\*.zip C:\\ToolsWork\\Backup_Bancos\\");
@@ -218,7 +223,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		String arquivoCompactado = "Banco"+Loja+"_versao7.zip";
 		new Comando("cmd /c C:\\progra~1\\WinRAR\\Rar.exe a -ep C:\\Cosmos\\Dat\\"+ arquivoCompactado+"C:\\Cosmos\\Dat\\*.mdb");
 		new Comando("cmd /c move C:\\Cosmos\\Dat\\*.zip C:\\ToolsWork\\Backup_Bancos");
-		JOptionPane.showMessageDialog(null, "Você concluiu a geração do banco versão 7, cole "+arquivoCompactado+" no FTP");
+		JOptionPane.showMessageDialog(null, "VocÃª concluiu a geraÃ§Ã£o do banco versÃ£o 7, cole "+arquivoCompactado+" no FTP");
 	}
 	
 		
@@ -234,13 +239,13 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 				Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 			}
 			
-			int confirm = JOptionPane.showConfirmDialog(null, "Certifique se você gerou a carga corretamente, antes de começar as etapas. Deseja mover o arquivo da loja: " + Loja + "?","Verifique a loja",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			int confirm = JOptionPane.showConfirmDialog(null, "Certifique se vocÃª gerou a carga corretamente, antes de comeÃ§ar as etapas. Deseja mover o arquivo da loja: " + Loja + "?","Verifique a loja",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			if(confirm == JOptionPane.NO_OPTION){
 				Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 
 				while(Integer.parseInt(Loja) < 0 || Integer.parseInt(Loja) > 1000 || Loja.length() != 3){
-					JOptionPane.showMessageDialog(null, "Inserção inválida");
+					JOptionPane.showMessageDialog(null, "InserÃ§Ã£o invÃ¡lida");
 					Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 				}
 			}			
@@ -256,17 +261,17 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 			Loja = JOptionPane.showInputDialog("Digite a loja: ");
 			
 			while(Integer.parseInt(Loja) < 0 || Integer.parseInt(Loja) > 1000 || Loja.length() != 3){
-				JOptionPane.showMessageDialog(null, "Inserção inválida");
+				JOptionPane.showMessageDialog(null, "InserÃ§Ã£o invÃ¡lida");
 				Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 			}
 			
-			int confirm = JOptionPane.showConfirmDialog(null, "Certifique se você gerou a carga corretamente, antes de começar as etapas. Deseja mover o arquivo da loja: " + Loja + "?","Verifique a loja",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			int confirm = JOptionPane.showConfirmDialog(null, "Certifique se vocÃª gerou a carga corretamente, antes de comeÃ§ar as etapas. Deseja mover o arquivo da loja: " + Loja + "?","Verifique a loja",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 			if(confirm == JOptionPane.NO_OPTION){
 				Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 
 				while(Integer.parseInt(Loja) < 0 || Integer.parseInt(Loja) > 1000 || Loja.length() != 3){
-					JOptionPane.showMessageDialog(null, "Inserção inválida");
+					JOptionPane.showMessageDialog(null, "InserÃ§Ã£o invÃ¡lida");
 					Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 				}
 			}
