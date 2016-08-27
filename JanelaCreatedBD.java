@@ -155,7 +155,8 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 			MoverArquivov7();
 			listButtonsv7.get(0).setEnabled(false);
 		}	else if(e.getSource() == listButtonsv7.get(1)){
-			new Comando("cmd /c copy \"C:\\Cosmos\\Estrutura de Versoes\\Estrutura 7.0\\Csmloja.mdb C:\\Cosmos\\Dat\\ \"");
+			new Comando("cmd /c copy C:\\Cosmos\\Csmloja.mdb C:\\Cosmos\\Dat\\ ");
+			new Comando("cmd /c s");
 		}	else if(e.getSource() == listButtonsv7.get(3)){
 			new Comando("cmd /c C:\\Cosmos\\Exe\\ConfigIni -"+ System.getProperty("user.name")+".exe");
 		}  	else if(e.getSource() == listButtonsv7.get(3)) {
