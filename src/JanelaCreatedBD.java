@@ -171,7 +171,23 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 			if(e.getSource() == botaoBanco){
 			new Comando("cmd /c explorer C:\\ToolsWork\\Backup_Bancos\\");
 		} 	else if(e.getSource() == botaoFTP) {
-			new Comando("cmd /c explorer ftp://"+System.getProperty("user.name")+"@ftpsuporte.pmenos.com.br/ ");
+			this.UF = JOptionPane.showInputDialog("Digite o estado da loja: ");
+			while(UF.length() != 2){
+				JOptionPane.showMessageDialog(null, "Estado invalido");
+				Loja = JOptionPane.showInputDialog("Digite o estado da loja "+this.UF" novamente: ");
+			}
+			
+			JProgressBar progresso = new JProgressBar();
+			setSize(300,100);
+			add(progresso);
+			setLocationRelativeTo(null);
+			setCursor(new Cursor(Cursor.WAIT_CURSOR));
+			setVisible(true);
+			progresso.setToolTipText("Aguarde...");
+			new Comando("cmd /c copy"+"Banco"+Loja+"+"_versao15.zip" + " " ftp://"+System.getProperty("user.name")+"@ftpsuporte.pmenos.com.br//SuporteTecnico//+this.UF")
+			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+			JOptionPane.showMessageDialog(this, "Carregamento concluído");
+			new Comando("cmd /c explorer ftp://"+System.getProperty("user.name")+"@ftpsuporte.pmenos.com.br//SuporteTecnco//+this.UF ");
 			}
 		
 }
@@ -197,8 +213,16 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		String arquivoCompactado = "Banco"+Loja+"_versao15.zip";
 		// criando zip - vai zipar todos os arquivos .bak - por esse motivo não posso deixar mais de
 		// 1 arquivo com essa mesma extensão
+		JProgressBar progresso = new JProgressBar();
+		setSize(300,100);
+		add(progresso);
+		setLocationRelativeTo(null);
+		setCursor(new Cursor(Cursor.WAIT_CURSOR));
+		setVisible(true);
+		progresso.setToolTipText("Aguarde...");
 		new Comando("cmd /c C:\\progra~1\\WinRAR\\Rar.exe a -ep C:\\Cosmos\\Bck\\"+arquivoCompactado+ " C:\\Cosmos\\Bck\\*.bak");
-		JOptionPane.showMessageDialog(null, "Aguarde uns instantes.. Compactando arquivo.");
+		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		JOptionPane.showMessageDialog(this, "Carregamento concluído");
 		// movendo pro backup
 		new Comando("cmd /c move C:\\Cosmos\\Bck\\*.zip C:\\ToolsWork\\Backup_Bancos");
 		// abrindo pasta pro operador olhar
@@ -206,6 +230,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		
 		JOptionPane.showMessageDialog(null, "Você concluiu a geração do banco versão 15, cole o arquivo "+arquivoCompactado+" no FTP");
 	}
+	
 	
 	public void MoverArquivov7() {
 		Date hoje = new Date();
@@ -251,12 +276,6 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 				}
 			}			
 			
-			this.UF = JOptionPane.showInputDialog("Digite o estado da loja: ");
-			while(UF.length() != 2){
-				JOptionPane.showMessageDialog(null, "Estado invalido");
-				Loja = JOptionPane.showInputDialog("Digite o estado da loja "+this.UF" novamente: ");
-			}
-			
 			for(int i = 0;i<listButtonsv7.size();i++)
 				listButtonsv7.get(i).setEnabled(true);
 			
@@ -283,14 +302,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 				}
 			}
 			
-			this.UF = JOptionPane.showInputDialog("Digite o estado da loja: ");
-			
-			while(UF.length() != 2){
-				JOptionPane.showMessageDialog(null, "Estado invalido");
-				Loja = JOptionPane.showInputDialog("Digite o estado da loja "+this.UF" novamente: ");
-			}
-			
-			
+	
 			for(int i = 0;i<listButtonsv15.size();i++)
 				listButtonsv15.get(i).setEnabled(true);
 
