@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -23,7 +24,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 	
 	
 	public JanelaCreatedBD(int x,int y){
-		super("Gera√ß√£o de Banco de Dados");
+		super("GeraÁo de Banco de Dados");
 		setContentPane(new JPanel());
 		setResizable(false);
 		setVisible(true);
@@ -58,7 +59,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		grupBDs.add(RadioButtonv15);
 		grupBDs.add(RadioButtonv7);
 		panelRadio = new JPanel(new MigLayout());
-		panelRadio.setBorder(BorderFactory.createTitledBorder("Escolha a op√ß√£o"));
+		panelRadio.setBorder(BorderFactory.createTitledBorder("Escolha a opÁo"));
 		panelRadio.setBounds(0, 0, 500, 60);
 		panelRadio.add(RadioButtonv15);
 		panelRadio.add(RadioButtonv7);
@@ -83,8 +84,8 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		panelv15.setBounds(0, 77, 700, 80);
 		listButtonsv15.add(new JButton("Mover Carga"));
 		listButtonsv15.add(new JButton("Config Ini"));
-		listButtonsv15.add(new JButton("Manuten√ß√£o"));
-		listButtonsv15.add(new JButton("Seguran√ßaFL"));
+		listButtonsv15.add(new JButton("ManutenÁo"));
+		listButtonsv15.add(new JButton("SeguranÁaFL"));
 		listButtonsv15.add(new JButton("Repara"));
 		listButtonsv15.add(new JButton("Compactar Arquivo"));
 
@@ -104,7 +105,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		listButtonsv7.add(new JButton("Mover Carga"));
 		listButtonsv7.add(new JButton("Mover MDB"));
 		listButtonsv7.add(new JButton("Config Ini"));
-		listButtonsv7.add(new JButton("Seguran√ßa FL"));
+		listButtonsv7.add(new JButton("SeguranÁa FL"));
 		listButtonsv7.add(new JButton("Repara"));
 		listButtonsv7.add(new JButton("Compactar Arquivo"));
 		
@@ -154,8 +155,9 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 			MoverArquivov7();
 			listButtonsv7.get(0).setEnabled(false);
 		}	else if(e.getSource() == listButtonsv7.get(1)){
-			new Comando("cmd /c copy \"C:\\Cosmos\\Estrutura de Versoes\\Estrutura 7.0\\Csmloja.mdb C:\\Cosmos\\Dat\\ \"");
-		}	else if(e.getSource() == listButtonsv7.get(3)){
+			new Comando("cmd /c copy C:\\Cosmos\\Csmloja.mdb C:\\Cosmos\\Dat\\ ");
+			new Comando("cmd /c s");
+		}	else if(e.getSource() == listButtonsv7.get(2)){
 			new Comando("cmd /c C:\\Cosmos\\Exe\\ConfigIni -"+ System.getProperty("user.name")+".exe");
 		}  	else if(e.getSource() == listButtonsv7.get(3)) {
 			new Comando("cmd /c C:\\Cosmos\\Exe\\SegFl.exe");
@@ -166,29 +168,26 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 			listButtonsv7.get(5).setEnabled(false);
 			botaoFTP.setEnabled(true);
 		}
-		
-		
+			
 			if(e.getSource() == botaoBanco){
 			new Comando("cmd /c explorer C:\\ToolsWork\\Backup_Bancos\\");
-		} 	else if(e.getSource() == botaoFTP) {
+		} 	
+			else if(e.getSource() == botaoFTP) {
 			this.UF = JOptionPane.showInputDialog("Digite o estado da loja: ");
-			while(UF.length() != 2){
+			while(UF.length() <= 2){
 				JOptionPane.showMessageDialog(null, "Estado invalido");
-				Loja = JOptionPane.showInputDialog("Digite o estado da loja "+this.UF" novamente: ");
+				this.UF = JOptionPane.showInputDialog("Digite o estado da loja " +this.UF+ " novamente: ");
+				if (JOptionPane.CANCEL_OPTION == 1)
+					return;
+			}
+			if(RadioButtonv7.isSelected()) {
+			new Comando("cmd /c explorer ftp://"+System.getProperty("user.name")+"@ftpsuporte.pmenos.com.br//SuporteTecnico//"+this.UF);
+			}
+			else if(RadioButtonv15.isSelected())
+			new Comando("cmd /c explorer ftp://"+System.getProperty("user.name")+"@ftpsuporte.pmenos.com.br//SuporteTecnico//"+this.UF);
 			}
 			
-			JProgressBar progresso = new JProgressBar();
-			setSize(300,100);
-			add(progresso);
-			setLocationRelativeTo(null);
-			setCursor(new Cursor(Cursor.WAIT_CURSOR));
-			setVisible(true);
-			progresso.setToolTipText("Aguarde...");
-			new Comando("cmd /c copy"+"Banco"+Loja+"+"_versao15.zip" + " " ftp://"+System.getProperty("user.name")+"@ftpsuporte.pmenos.com.br//SuporteTecnico//+this.UF")
-			setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-			JOptionPane.showMessageDialog(this, "Carregamento conclu√≠do");
-			new Comando("cmd /c explorer ftp://"+System.getProperty("user.name")+"@ftpsuporte.pmenos.com.br//SuporteTecnco//+this.UF ");
-			}
+			
 		
 }
 	
@@ -208,29 +207,22 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		new Comando("cmd /c copy C:\\Cosmos\\Importa\\"+Arquivo_Carga+" C:\\ToolsWork\\Cargas_Banco");
 	}
 	
+
 	public void CompactarArquivov15() {
-	
-		String arquivoCompactado = "Banco"+Loja+"_versao15.zip";
-		// criando zip - vai zipar todos os arquivos .bak - por esse motivo n√£o posso deixar mais de
-		// 1 arquivo com essa mesma extens√£o
-		JProgressBar progresso = new JProgressBar();
-		setSize(300,100);
-		add(progresso);
-		setLocationRelativeTo(null);
-		setCursor(new Cursor(Cursor.WAIT_CURSOR));
-		setVisible(true);
-		progresso.setToolTipText("Aguarde...");
-		new Comando("cmd /c C:\\progra~1\\WinRAR\\Rar.exe a -ep C:\\Cosmos\\Bck\\"+arquivoCompactado+ " C:\\Cosmos\\Bck\\*.bak");
-		setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-		JOptionPane.showMessageDialog(this, "Carregamento conclu√≠do");
-		// movendo pro backup
-		new Comando("cmd /c move C:\\Cosmos\\Bck\\*.zip C:\\ToolsWork\\Backup_Bancos");
-		// abrindo pasta pro operador olhar
-		new Comando("cmd /c explorer C:\\Cosmos\\Bck\\");
 		
-		JOptionPane.showMessageDialog(null, "Voc√™ concluiu a gera√ß√£o do banco vers√£o 15, cole o arquivo "+arquivoCompactado+" no FTP");
+		String arquivoCompactado = "Banco"+Loja+"_versao15.zip";
+		
+		 try {
+	           Compactador.compactarParaZip("C:\\Cosmos\\Bck\\"+arquivoCompactado,"C:\\Cosmos\\Bck\\",".bak");
+	       } catch (IOException e) {
+	    	   JOptionPane.showMessageDialog(null, "Erro na compactaÁ„o do banco vers„o 15");
+	       }
+	       
+	   	new Comando("cmd /c copy C:\\Cosmos\\Bck\\*.zip C:\\ToolsWork\\Backup_Bancos");
+	   	new Comando("cmd /c explorer C:\\Cosmos\\Bck\\");
+	   	
+		JOptionPane.showMessageDialog(null, "VocÍ concluiu a geraÁo do banco vers„o 15, cole o arquivo "+arquivoCompactado+" no FTP");
 	}
-	
 	
 	public void MoverArquivov7() {
 		Date hoje = new Date();
@@ -238,19 +230,26 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		df = new SimpleDateFormat("ddMM");
 		
 		String Arquivo_Carga = "RF"+Loja+df.format(hoje)+".zip";
-	
+		System.out.println(Arquivo_Carga);
+		
 		new Comando("cmd /c move F:\\Exporta\\"+Arquivo_Carga+" C:\\Cosmos\\Importa");
-		new Comando("cmd /c move C:\\Cosmos\\Dat\\*.zip C:\\ToolsWork\\Backup_Bancos\\");
-		new Comando("cmd /c del C:\\Cosmos\\Dat\\*.mdb");
-		new Comando("cmd /c copy C:\\Cosmos\\Importa\\"+Arquivo_Carga+" C:\\ToolsWork\\Cargas_Banco");
-
-	}
+ 		new Comando("cmd /c move C:\\Cosmos\\Dat\\*.zip C:\\ToolsWork\\Backup_Bancos\\");
+ 		new Comando("cmd /c del C:\\Cosmos\\Dat\\*.mdb");
+ 		new Comando("cmd /c copy C:\\Cosmos\\Importa\\"+Arquivo_Carga+" C:\\ToolsWork\\Cargas_Banco");
+ 	}
+	
 	
 	public void CompactarArquivov7() {
 		String arquivoCompactado = "Banco"+Loja+"_versao7.zip";
-		new Comando("cmd /c C:\\progra~1\\WinRAR\\Rar.exe a -ep C:\\Cosmos\\Dat\\"+ arquivoCompactado+"C:\\Cosmos\\Dat\\*.mdb");
-		new Comando("cmd /c move C:\\Cosmos\\Dat\\*.zip C:\\ToolsWork\\Backup_Bancos");
-		JOptionPane.showMessageDialog(null, "Voc√™ concluiu a gera√ß√£o do banco vers√£o 7, cole "+arquivoCompactado+" no FTP");
+		 try {
+	           Compactador.compactarParaZip("C:\\Cosmos\\Dat\\"+arquivoCompactado,"C:\\Cosmos\\Dat\\",".MDB");
+	       } catch (IOException e) {
+	           JOptionPane.showMessageDialog(null, "Erro na compactaÁ„o do banco vers„o 7");
+	       }
+	   	new Comando("cmd /c copy C:\\Cosmos\\Dat\\*.zip C:\\ToolsWork\\Backup_Bancos");
+	   	new Comando("cmd /c explorer C:\\Cosmos\\Dat\\");
+	   	
+		JOptionPane.showMessageDialog(null, "VocÍ concluiu a geraÁao do banco vers„o 7, cole "+arquivoCompactado+" no FTP");
 	}
 	
 		
@@ -265,13 +264,13 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 				Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 			}
 			
-			int confirm = JOptionPane.showConfirmDialog(null, "Certifique se voc√™ gerou a carga corretamente, antes de come√ßar as etapas. Deseja mover o arquivo da loja: " + Loja + "?","Verifique a loja",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			int confirm = JOptionPane.showConfirmDialog(null, "Certifique se vocÍ gerou a carga corretamente, antes de comeÁar as etapas. Deseja mover o arquivo da loja: " + Loja + "?","Verifique a loja",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 			
 			if(confirm == JOptionPane.NO_OPTION){
 				Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 
 				while(Integer.parseInt(Loja) < 0 || Integer.parseInt(Loja) > 1000 || Loja.length() != 3){
-					JOptionPane.showMessageDialog(null, "Inser√ß√£o inv√°lida");
+					JOptionPane.showMessageDialog(null, "InserÁo inv·lida");
 					Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 				}
 			}			
@@ -280,24 +279,24 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 				listButtonsv7.get(i).setEnabled(true);
 			
 		} else if(RadioButtonv7.isSelected() == false){
-			Desabliitar();
+			Desabilitar();
 		}
 		
 		if(RadioButtonv15.isSelected()){
 			Loja = JOptionPane.showInputDialog("Digite a loja: ");
 			
 			while(Integer.parseInt(Loja) < 0 || Integer.parseInt(Loja) > 1000 || Loja.length() != 3){
-				JOptionPane.showMessageDialog(null, "Inser√ß√£o inv√°lida");
+				JOptionPane.showMessageDialog(null, "InserÁo inv·lida");
 				Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 			}
 			
-			int confirm = JOptionPane.showConfirmDialog(null, "Certifique se voc√™ gerou a carga corretamente, antes de come√ßar as etapas. Deseja mover o arquivo da loja: " + Loja + "?","Verifique a loja",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+			int confirm = JOptionPane.showConfirmDialog(null, "Certifique se vocÍ gerou a carga corretamente, antes de comeÁar as etapas. Deseja mover o arquivo da loja: " + Loja + "?","Verifique a loja",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
 
 			if(confirm == JOptionPane.NO_OPTION){
 				Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 
 				while(Integer.parseInt(Loja) < 0 || Integer.parseInt(Loja) > 1000 || Loja.length() != 3){
-					JOptionPane.showMessageDialog(null, "Inser√ß√£o inv√°lida");
+					JOptionPane.showMessageDialog(null, "InserÁo inv·lida");
 					Loja = JOptionPane.showInputDialog("Digite a loja novamente: ");
 				}
 			}
@@ -311,6 +310,5 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 
 	
 }
-	
-}
+	}
 	
