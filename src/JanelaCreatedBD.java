@@ -238,12 +238,12 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		df = new SimpleDateFormat("ddMM");
 		
 		String Arquivo_Carga = "RF"+Loja+df.format(hoje)+".zip";
-		System.out.println(Arquivo_Carga);
-		
-		new Comando("cmd /c move F:\\Exporta\\"+Arquivo_Carga+".zip "+" C:\\Cosmos\\Importa");
-		new Comando("cmd /c copy C:\\Cosmos\\Importa\\"+Arquivo_Carga+" C:\\ToolsWork\\Cargas_Banco");
+	
+		new Comando("cmd /c move F:\\Exporta\\"+Arquivo_Carga+" C:\\Cosmos\\Importa");
 		new Comando("cmd /c move C:\\Cosmos\\Dat\\*.zip C:\\ToolsWork\\Backup_Bancos\\");
 		new Comando("cmd /c del C:\\Cosmos\\Dat\\*.mdb");
+		new Comando("cmd /c copy C:\\Cosmos\\Importa\\"+Arquivo_Carga+" C:\\ToolsWork\\Cargas_Banco");
+
 	}
 	
 	public void CompactarArquivov7() {
