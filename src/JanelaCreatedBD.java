@@ -82,17 +82,17 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		panelv15 = new JPanel(new MigLayout());
 		panelv15.setBorder(BorderFactory.createTitledBorder("Banco de dados v15"));
 		panelv15.setBounds(0, 77, 700, 80);
-		listButtonsv15.add(new JButton("Transmitir Carga Total"));
+		listButtonsv15.add(new JButton("Transmitir"));
 		listButtonsv15.add(new JButton("Config Ini"));
 		listButtonsv15.add(new JButton("Manutenção"));
-		listButtonsv15.add(new JButton("SegurançaFL"));
+		listButtonsv15.add(new JButton("Segurança"));
 		listButtonsv15.add(new JButton("Repara"));
 		listButtonsv15.add(new JButton("Compactar"));
 
-		panelv15.add(listButtonsv15.get(0),"gapleft 50");
+		panelv15.add(listButtonsv15.get(0),"gapleft 60");
 		panelv15.add(listButtonsv15.get(1),"grow");
 		panelv15.add(listButtonsv15.get(2),"wrap");
-		panelv15.add(listButtonsv15.get(3),"gapleft 50");
+		panelv15.add(listButtonsv15.get(3),"gapleft 60");
 		panelv15.add(listButtonsv15.get(4),"grow");
 		panelv15.add(listButtonsv15.get(5),"grow");
 		this.add(panelv15);
@@ -102,17 +102,17 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		panelv7 = new JPanel(new MigLayout());
 		panelv7.setBorder(BorderFactory.createTitledBorder("Banco de Dados v7"));
 		panelv7.setBounds(0, 170, 700, 80);
-		listButtonsv7.add(new JButton("Transmitir Carga Total"));
-		listButtonsv7.add(new JButton("Mover Csmloja.mdb"));
+		listButtonsv7.add(new JButton("Transmitir"));
+		listButtonsv7.add(new JButton("Transmitir Csmloja.mdb"));
 		listButtonsv7.add(new JButton("Config Ini"));
-		listButtonsv7.add(new JButton("Segurança FL"));
+		listButtonsv7.add(new JButton("Segurança"));
 		listButtonsv7.add(new JButton("Repara"));
 		listButtonsv7.add(new JButton("Compactar"));
 		
-		panelv7.add(listButtonsv7.get(0),"gapleft 50");
+		panelv7.add(listButtonsv7.get(0),"gapleft 60");
 		panelv7.add(listButtonsv7.get(1),"grow");
 		panelv7.add(listButtonsv7.get(2),"wrap");
-		panelv7.add(listButtonsv7.get(3),"gapleft 50");
+		panelv7.add(listButtonsv7.get(3),"gapleft 60");
 		panelv7.add(listButtonsv7.get(4),"grow");
 		panelv7.add(listButtonsv7.get(5),"grow");
 		this.add(panelv7);

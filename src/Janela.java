@@ -241,11 +241,8 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 	
 	public void AcessoControleAtendimento()
 	{
-		JOptionPane.showMessageDialog(null, "<html> O uso é apenas para controlar suas ligações internas<br>"
-											 + "maiores dúvidas procure o Administrador do sistema</html>");
-		
-		new Comando("rundll32 SHELL32.DLL,ShellExec_RunDLL " + "cmd /c C:\\ToolsWork\\ControlCall.exe");
-		new Comando("cmd /c explorer \"C:\\ToolsWork\\Registro de Atendimento\"  ");
+		new Comando("rundll32 SHELL32.DLL,ShellExec_RunDLL " + "cmd /c C:\\ToolsWork\\Control\\ControlCalls.exe");
+		//new Comando("cmd /c explorer \"C:\\ToolsWork\\script\\Registro de Atendimento\"  ");
 
 	}
 	
