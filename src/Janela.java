@@ -104,6 +104,7 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 		links.addItem("Site Pmenos");
 		links.addItem("Cosmos NET");
 		links.addItem("IE - Internet Explorer");
+		links.addItem("WebEmail Zimbra");
    		
 		listPanel.add(new JPanel(new MigLayout()));
 			listPanel.get(3).setBorder(BorderFactory.createTitledBorder("Link(s)"));
@@ -228,6 +229,8 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 							new Comando("cmd /c C:\\ToolsWork\\Links\\urlCosmosNET.url");
 								else if (links.getSelectedIndex() == 5)
 									new Comando("cmd /c C:\\progra~1\\Intern~1\\iexplore.exe");
+										else if (links.getSelectedIndex() == 6)
+									new Comando("cmd /c C:\\ToolsWork\\Links\\urlZimbra.url");
 	}
 	
 	public void AcessoPlanilhas(){
