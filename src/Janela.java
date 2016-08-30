@@ -23,7 +23,7 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 	
 	public Janela(int x, int y)
 	{
-		super("Ferramenta Auxiliar - Help Desk v1.0");
+		super("Ferramenta Auxiliar - Help Desk v1.1 Developer by Jeff S");
 		new Comando("rundll32 SHELL32.DLL,ShellExec_RunDLL "+"cmd /c C:\\ToolsWork\\script\\IniPart.exe");
 		setContentPane(new JPanel());
 		setLayout(null);
