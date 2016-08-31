@@ -170,7 +170,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		}
 			
 			if(e.getSource() == botaoBanco){
-			new Comando("cmd /c explorer C:\\ToolsWork\\Backup_Bancos\\");
+			new Comando("cmd /c explorer C:\\Cosmos\\Bck\\");
 		} 	
 			else if(e.getSource() == botaoFTP) {
 			this.UF = JOptionPane.showInputDialog("Digite o estado da loja: ");
