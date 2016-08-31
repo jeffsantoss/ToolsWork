@@ -51,15 +51,15 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 	
 	public void OrganizarRadio() {
 		
-		RadioButtonv15 = new JRadioButton("Banco de dados v15");
-		RadioButtonv7 = new JRadioButton("Banco de dados v7");
+		RadioButtonv15 = new JRadioButton("Banco de Dados v15");
+		RadioButtonv7 = new JRadioButton("Banco de Dados v7");
 		grupBDs = new ButtonGroup();
 		botaoBanco = new JButton("BD Gerados");
 		botaoFTP = new JButton("FTP");
 		grupBDs.add(RadioButtonv15);
 		grupBDs.add(RadioButtonv7);
 		panelRadio = new JPanel(new MigLayout());
-		panelRadio.setBorder(BorderFactory.createTitledBorder("Escolha a opço"));
+		panelRadio.setBorder(BorderFactory.createTitledBorder("Escolha a opção"));
 		panelRadio.setBounds(0, 0, 500, 60);
 		panelRadio.add(RadioButtonv15);
 		panelRadio.add(RadioButtonv7);

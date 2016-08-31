@@ -215,8 +215,10 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 
 	
 	public void AcessoLinks(){
-		JOptionPane.showMessageDialog(null, "<html>O browser aberto serÃ¡ o padrÃ£o da sua mÃ¡quina pra alterar<br>"
+		/*
+		JOptionPane.showMessageDialog(null, "<html>O browser aberto será o padrÃ£o da sua mquina pra alterar<br>"
 										+ "vÃ¡ em Painel Controle -> Propriedades de Internet -> Definir Programas -> Definir Programas padrÃ£o da internet</html>");
+		*/
 		if(links.getSelectedIndex() == 0)
 			new Comando("cmd /c C:\\ToolsWork\\Links\\urlIntranet.url");
 			else if (links.getSelectedIndex() == 1)
