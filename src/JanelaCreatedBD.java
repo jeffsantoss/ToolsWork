@@ -144,7 +144,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 		}	else if(e.getSource() == listButtonsv15.get(4)) {
 			new Comando("cmd /c C:\\Cosmos\\Exe\\Repara.exe");
 			// excluir os bak pra ficar apenas 1
-			new Comando("cmd /c del C:\\Cosmos\\Bck\\*.bak");
+			//new Comando("cmd /c del C:\\Cosmos\\Bck\\*.bak");
 		}	else if(e.getSource() == listButtonsv15.get(5))	{
 				CompactarArquivov15();
 				listButtonsv15.get(5).setEnabled(false);
