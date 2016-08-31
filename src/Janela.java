@@ -244,8 +244,8 @@ public class Janela extends JFrame implements KeyListener, ActionListener{
 	
 	public void AcessoControleAtendimento()
 	{
-		new Comando("rundll32 SHELL32.DLL,ShellExec_RunDLL " + "cmd /c C:\\ToolsWork\\Control\\ControlCalls.exe");
-		//new Comando("cmd /c explorer \"C:\\ToolsWork\\script\\Registro de Atendimento\"  ");
+		new Comando("rundll32 SHELL32.DLL,ShellExec_RunDLL " + "cmd /c C:\\ToolsWork\\Controle\\ControlCall.exe");
+		new Comando("cmd /c explorer \"C:\\ToolsWork\\Controle\\Registro de Atendimento\"  ");
 
 	}
 	
