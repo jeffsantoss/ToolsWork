@@ -24,7 +24,7 @@ public class JanelaCreatedBD extends JFrame implements ActionListener,ItemListen
 	
 	
 	public JanelaCreatedBD(int x,int y){
-		super("Geraço de Banco de Dados");
+		super("Geração de Banco de Dados");
 		setContentPane(new JPanel());
 		setResizable(false);
 		setVisible(true);
